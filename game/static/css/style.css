@@ -1,0 +1,26 @@
+/* style.css */
+
+/* Game board styles */
+.game-board {
+    width: 600px;
+    height: 600px;
+    border: 2px solid #000;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Player styles */
+.player {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.player.player1 {
+    background-color: red;
+}
+
+.player.player2 {
+    background-color: blue;
+}

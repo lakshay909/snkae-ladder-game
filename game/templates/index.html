@@ -1,0 +1,50 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake and Ladder Game</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="game-board">
+        <!-- Game board content goes here -->
+        <div id="player1" class="player"></div>
+        <div id="player2" class="player"></div>
+    </div>
+    <button onclick="rollDice()">Roll Dice</button>
+    <script src="{% static 'js/game.js' %}"></script>
+
+    <script>
+        // Load initial game state from the backend and render it on the game board
+        window.onload = function () {
+            fetchGameState();
+        };
+
+        function fetchGameState() {
+            fetch('/game_state/<game_id>/')  // Replace <game_id> with the actual game ID
+                .then(response => response.json())
+                .then(data => renderGameState(data));
+        }
+
+        // game.js
+
+        function renderGameState(gameState) {
+            // Render the game state on the game board
+            const players = gameState.players;
+            document.getElementById('player1').style.left = `${players['Player 1'] * 50}px`;
+            document.getElementById('player2').style.left = `${players['Player 2'] * 50}px`;
+
+            if (gameState.game_over) {
+                alert('Game Over');
+            }
+        }
+
+    </script>
+</body>
+
+</html>
